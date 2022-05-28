@@ -34,8 +34,13 @@ class Movie(models.Model):
     year_of_production = models.DateField()
     views_count = models.IntegerField(default=0)
     movie_trailer = models.URLField()
+<<<<<<< HEAD
 
     created = models.DateTimeField(blank=True, default=timezone.now)
+=======
+    
+    created = models.DateTimeField(default=timezone.now)
+>>>>>>> 5fbb59419c7ccbaf56c0dafab92ed370b7242d6a
 
     slug = models.SlugField(blank=True, null=True)
 
