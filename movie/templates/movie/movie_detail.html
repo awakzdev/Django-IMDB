@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
-  
+
+			<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 		<main class="content">
 			<div class="single">
@@ -59,6 +60,24 @@
 					{% endfor %}
 
 				</section>
+
+				<section class="comments">
+					<h3>Comments</h3>
+				</section>
+
+				<div id="respond">
+
+
+			  <form action="post_comment.php" method="post" id="commentform">
+
+				<textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
+				  <a href="#" class="myButton">Submit</a>
+
+
+			  </form>
+
+			</div>
+
 
 
 			</div>

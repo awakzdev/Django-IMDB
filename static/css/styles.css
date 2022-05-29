@@ -18,6 +18,8 @@ table {border-collapse: collapse;border-spacing: 0;}
 a img {border: none;}
 body{font-family: arial,sans-serif; background-color: #191919; position: relative;height: 100%;}
 
+
+
 .wrapper{float: left; width: 100%; position: relative;}
 .content{float: left; width: 100%;}
 .header{position: absolute; top:0; right: 0; left:0;background-color: rgba(0,0,0,0.5); z-index: 999;}
@@ -181,3 +183,55 @@ body{font-family: arial,sans-serif; background-color: #191919; position: relativ
 	.movie ul{float: none; width: 100%; text-align: center; margin:10px 0;}
 	.movie ul li{float: none;}
 }
+
+
+#respond {
+  margin-top: 40px;
+}
+
+#respond input[type='text'],
+#respond input[type='email'],
+#respond textarea {
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+
+
+  line-height: 1.4em;
+}
+
+.myButton {
+	box-shadow:inset 0px -3px 7px 0px #29bbff;
+	background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+	background-color:#2dabf9;
+	border-radius:3px;
+	border:1px solid #0b0e07;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+	background-color:#0688fa;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
