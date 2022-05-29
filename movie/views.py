@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
 from .models import Movie, MovieLinks
@@ -61,7 +60,7 @@ class MovieLanguage(ListView):
         return Movie.objects.filter(language=self.language)
 
     def get_context_data(self , **kwargs):
-        context = super(MovieLanguage , self).get_context_data(**kwargs)
+        context = super(MovieLanguage, self).get_context_data(**kwargs)
         context['movie_language'] = self.language
         return context
 
@@ -85,5 +84,6 @@ class MovieYear(YearArchiveView):
     date_field = 'year_of_production'
     make_object_list = True
     allow_future = True
+
 
 
