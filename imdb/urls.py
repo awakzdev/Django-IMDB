@@ -24,6 +24,7 @@ urlpatterns = [
     path('', HomeView.as_view()),
     path('admin/', admin.site.urls),
     path('movies/', include('movie.urls', namespace='movies')),
+    path('accounts/', include('accounts.urls')),
 
 ]
 
