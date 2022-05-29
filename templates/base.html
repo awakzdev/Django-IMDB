@@ -9,10 +9,7 @@
 	<!-- Icon -->
 	<link rel="icon" href="{% static 'img/icon.jpg' %}" type="image/icon type">
 
-	<!-- Sign up button -->
 
-	<!-- Vue JS -->
-	<script src="{% static 'js/code.js' %}"></script>
 	<!-- Link Swiper's CSS -->
 	<link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -35,6 +32,8 @@
 			<figure class="logo"><a href="/"><img src="{% static 'img/logo.png' %}" alt="Logo"></figure></a>
 			<nav class="menu">
 				<ul>
+
+
 
 					<li><a href="/">Home</a></li>
 					<li><a>Genres</a>
@@ -70,6 +69,8 @@
 							<input type="submit" value="" class="mobsearchsubmit">
 						</form>
 					</li>
+
+
 				</ul>
 			</nav>
 			<form class="search" method="GET" action="{% url 'movies:movie_search' %}">
@@ -79,7 +80,14 @@
 
 			<div class="toggle"><img src="img/menu.svg"></div>
 
-			<div class="stick-to-right">Sign Up</div>
+
+			<div class="stick-to-right" >
+				<button type="button">Sign Up</button>
+			</div>
+
+			<div class="stick-to-right">
+				<button type="button">Sign In</button>
+			</div>
 
 		</header>
 		<!-- Swiper -->

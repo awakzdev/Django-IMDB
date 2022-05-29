@@ -23,6 +23,9 @@ body{font-family: arial,sans-serif; background-color: #191919; position: relativ
 .wrapper{float: left; width: 100%; position: relative;}
 .content{float: left; width: 100%;}
 .header{position: absolute; top:0; right: 0; left:0;background-color: rgba(0,0,0,0.5); z-index: 999;}
+.stick-to-right{position:relative; left:1050px;float: left; text-decoration: none; color: #a0a0a0; font-size: 15px;
+ padding: 15px 5px;list-style: none;}
+
 .logo{float: left; margin: 0 20px; padding: 0;}
 .logo img{float: left; max-width: 120px; width: 100%; padding: 10px 0;}
 .menu{float: left;}
@@ -231,6 +234,7 @@ body{font-family: arial,sans-serif; background-color: #191919; position: relativ
 	position:relative;
 	top:1px;
 }
+
 
 
 
