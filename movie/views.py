@@ -85,3 +85,5 @@ class MovieYear(YearArchiveView):
     date_field = 'year_of_production'
     make_object_list = True
     allow_future = True
+
+

@@ -4,21 +4,21 @@ from django.utils import timezone
 # Create your models here.
 
 CATEGORY_CHOICES = (
-    ('action','ACTION'),
-    ('drama','DRAMA'),
-    ('comedy','COMEDY'),
-    ('romance','ROMANCE'),
+    ('action', 'ACTION'),
+    ('drama', 'DRAMA'),
+    ('comedy', 'COMEDY'),
+    ('romance', 'ROMANCE'),
 )
 
 LANGUAGE_CHOICES = (
-    ('english' , 'ENGLISH'),
-    ('german' , 'GERMAN'),
+    ('english', 'ENGLISH'),
+    ('german', 'GERMAN'),
 )
 
 STATUS_CHOICES = (
-    ('RA' , 'RECENTLY ADDED'),
-    ('MW' , 'MOST WATCHED'),
-    ('TR' , 'TOP RATED'),
+    ('RA', 'RECENTLY ADDED'),
+    ('MW', 'MOST WATCHED'),
+    ('TR', 'TOP RATED'),
 )
 
 

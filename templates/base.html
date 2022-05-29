@@ -79,23 +79,23 @@
 					
 	
 					
-					{% for movie in slider_movie %}
-						
+
+
 						<div class="swiper-slide">
-							{% if movie.banner %}
-								<img src="{{movie.banner.url}}">
+							{% if slider_movie.banner %}
+								<img src="{{slider_movie.banner.url}}">
 							{% endif %}
 							
 							<div class="caption">
 								<div class="captioninside">
-									<h3>{{movie.title}}</h3>
-									<p>{{movie.description}}</p>
-									<a href="{% url 'movies:movie_detail' movie.slug %}" class="playbutton">Play</a>
+									<h3>{{slider_movie.title}}</h3>
+									<p>{{slider_movie.description}}</p>
+									<a href="{% url 'movies:movie_detail' slider_movie.slug %}" class="playbutton">Play</a>
 								</div>
 							</div>
 						</div>
 				
-					{% endfor %}
+
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
