@@ -6,6 +6,9 @@
 	<title>Movies</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
+	<!-- Icon -->
+	<link rel="icon" href="{% static 'img/icon.jpg' %}" type="image/icon type">
+
 	<!-- Link Swiper's CSS -->
 	<link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -28,7 +31,7 @@
 			<figure class="logo"><a href="/"><img src="{% static 'img/logo.png' %}" alt="Logo"></figure></a>
 			<nav class="menu">
 				<ul>
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li><a>Genres</a>
 						<ul>
 							<li><a href="{% url 'movies:movie_category' 'action' %}">Action</a></li>
@@ -65,8 +68,8 @@
 				<input type="text" name="query" value="{{ request.GET.q}}" class="searchfield" placeholder="Search...">
 				<input type="submit" value="" class="searchsubmit">
 			</form>
-
 			<div class="toggle"><img src="img/menu.svg"></div>
+
 		</header>
 		<!-- Swiper -->
 		<div class="homeslider">

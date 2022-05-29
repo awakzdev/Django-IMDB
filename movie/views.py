@@ -57,11 +57,11 @@ class MovieLanguage(ListView):
     paginate_by = 2
 
     def get_queryset(self):
-        self.laungage = self.kwargs['lang']
-        return Movie.objects.filter(category=self.language)
+        self.language = self.kwargs['lang']
+        return Movie.objects.filter(language=self.language)
 
-    def get_context_data(self, **kwargs):
-        context = super(MovieLanguage, self).get_context_data(**kwargs)
+    def get_context_data(self , **kwargs):
+        context = super(MovieLanguage , self).get_context_data(**kwargs)
         context['movie_language'] = self.language
         return context
 

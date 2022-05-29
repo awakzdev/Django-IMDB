@@ -16,7 +16,7 @@ LANGUAGE_CHOICES = (
 )
 
 STATUS_CHOICES = (
-    ('RA' , 'RECRNTLY ADDED'),
+    ('RA' , 'RECENTLY ADDED'),
     ('MW' , 'MOST WATCHED'),
     ('TR' , 'TOP RATED'),
 )
@@ -34,9 +34,7 @@ class Movie(models.Model):
     year_of_production = models.DateField()
     views_count = models.IntegerField(default=0)
     movie_trailer = models.URLField()
-    
     created = models.DateTimeField(blank=True, default=timezone.now)
-
     slug = models.SlugField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
