@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
 from .models import Movie, MovieLinks
@@ -87,3 +88,4 @@ class MovieYear(YearArchiveView):
 
 
 
+# Saved for comments - @login_required(login_url='/accounts/login')
