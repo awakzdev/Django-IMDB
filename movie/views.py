@@ -59,7 +59,7 @@ class MovieLanguage(ListView):
         self.language = self.kwargs['lang']
         return Movie.objects.filter(language=self.language)
 
-    def get_context_data(self , **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(MovieLanguage, self).get_context_data(**kwargs)
         context['movie_language'] = self.language
         return context
