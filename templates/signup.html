@@ -1,10 +1,31 @@
-{% load crispy_forms_tags %}
+
+{% load static %}
+
+<html>
+<head>
+<style>
+
+
+h1 {color: white; text-align: center; padding-top: 270px; padding-right:30px}
+
+
+
+</style>
+</head>
+<body>
 
 <h1>Signup Page</h1>
-<form class="site-form" method="post">
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<div class="login">
+
+<div class="login">
+   <form method="post">
 
   {% csrf_token %}
   {{form.as_p}}
 
-  <input type="submit" value="Signup">
+   <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
 </form>
+  </div>
+
