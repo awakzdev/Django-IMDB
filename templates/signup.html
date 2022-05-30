@@ -1,6 +1,6 @@
 {% load crispy_forms_tags %}
 <h1>Signup Page</h1>
-<form class="site-form" action="/accounts/signup" method="post">
+<form class="site-form" action="/accounts/signup/" method="post">
   {% csrf_token %}
   {{form.as_p}}
 
