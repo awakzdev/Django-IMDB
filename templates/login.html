@@ -1,40 +1,41 @@
+{% load crispy_forms_tags %}
 {% load static %}
 
+
+<html>
+<head>
+<style>
+
+h1 {text-align: center; line-height: 520px; padding-right:30px}
+p {text-align: center;}
+div {text-align: center;}
+input {text-align
+div { height: 50px; border: 1px solid blue;}
+
+</style>
+</head>
+<body>
+
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
-<div class="container-fluid">
-    <div class="row no-gutter">
-        <!-- The image half -->
-        <div class="col-md-6 d-none d-md-flex bg-image"></div>
 
+<h1>Login Page</h1>
+<div class="login">
 
-        <!-- The content half -->
-        <div class="col-md-6 bg-light">
-            <div class="login d-flex align-items-center py-5">
+  <form method="post">
 
-                <!-- Demo content-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-10 col-xl-7 mx-auto">
-                            <h3 class="display-4">Login Page</h3>
-                            <form>
-                                <div class="form-group mb-3">
-                                    <input id="inputUsername" type="username" placeholder="Username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
-                                </div>
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input id="customCheck1" type="checkbox" checked class="custom-control-input">
-                                    <label for="customCheck1" class="custom-control-label">Remember password</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
-                            </form>
-                        </div>
-                    </div>
-                </div><!-- End -->
+  {% csrf_token %}
+  {{form.as_p}}
 
-            </div>
-        </div><!-- End -->
-
+  <div>
+  <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
     </div>
+
+
+</form>
+ </form>
 </div>
+
+</body>
+</html>
+
+
