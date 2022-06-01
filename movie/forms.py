@@ -1,12 +1,19 @@
 from django import forms
+from . import models
 from .models import Comment
 
 
 class CommentForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model = Comment
-        fields = ('commentor_name', 'comment_body')
+        fields = ('commenter_name', 'comment_body')
         widgets = {
-            'commentor_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'commenter_name': forms.TextInput(attrs={'class': 'form-control'}),
             'comment_body': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+
+class CreateComment(forms.ModelForm):
+    class Meta:
+        model = models.Movie
+        fields = ['title', 'status', 'slug']

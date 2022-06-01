@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
-# Create your models here.
+
 
 CATEGORY_CHOICES = (
     ('action', 'ACTION'),
@@ -37,7 +37,6 @@ class Movie(models.Model):
     movie_trailer = models.URLField()
     created = models.DateTimeField(blank=True, default=timezone.now)
     slug = models.SlugField(blank=True, null=True)
-    name = models.CharField(max_length=200, null=False, blank=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -54,7 +53,7 @@ LINK_CHOICES = (
 )
 
 
-class MovieLinks(models.Model):
+class MovieLink(models.Model):
     movie = models.ForeignKey(Movie, related_name='movie_watch_link', on_delete=models.CASCADE)
     type = models.CharField(choices=LINK_CHOICES, max_length=1)
     link = models.URLField()
@@ -65,10 +64,10 @@ class MovieLinks(models.Model):
 
 class Comment(models.Model):
     movie = models.ForeignKey(Movie, related_name="comments", on_delete=models.CASCADE)
-    commentor_name = models.CharField(max_length=200)
+    commenter_name = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     comment_body = models.TextField()
     date_added = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '%s - %s' % (self.movie.name, self.commentor_name)
+        return '%s - %s' % (self.movie.title, self.commenter_name)
 

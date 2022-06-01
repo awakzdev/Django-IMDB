@@ -33,7 +33,6 @@
 							<li><a href="{{link.link}}">link{{forloop.counter}}</a></li>
 							{% endif %}
 						{% endfor %}
-							
 						
 					</ul>
 					<ul class="wlinks">
@@ -46,8 +45,6 @@
 
 					</ul>
 				</section>
-
-
 
 				<section class="related">
 					<h3>Related movies</h3>
@@ -70,19 +67,16 @@
 					{% if not movie.comments.all %}
 
 						<p style="color: white">No Comments Added yet...</p>
-					<br>
-					<hr>
 
 					{% else %}
 						{% for comment in movie.comments.all %}
-					<div class="commenting" style="color: white;">
-							<h3><strong>{{ comment.commentor_name }}</strong></h3>
+					<section class="reply" style="padding: 10px; color: white;">
+							<h3><strong>{{ comment.commenter_name }}</strong></h3>
 							<p>{{ comment.comment_body }}</p>
 							<p><small>{{ comment.date_added }}</small></p>
-					</div>
+					</section>
 						{% endfor %}
 					{% endif %}
-
 
 					<br>
 					<hr>
@@ -92,14 +86,9 @@
 				<textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
 				  <a href="#" class="myButton">Submit</a>
 
-
 			  </form>
-
 			</div>
-
-
-
-			</div>
-		</main>
+		</div>
+	</main>
 
 {% endblock body %}

@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
-from .models import Movie, MovieLinks, Comment
+from .models import Movie, MovieLink, Comment
+from . import forms
 from .forms import CommentForm
 
 
@@ -21,7 +22,7 @@ class HomeView(ListView):
 
 class MovieList(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 5
 
 
 class MovieDetail(DetailView):
@@ -35,14 +36,14 @@ class MovieDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MovieDetail, self).get_context_data(**kwargs)
-        context['links'] = MovieLinks.objects.filter(movie=self.get_object())
+        context['links'] = MovieLink.objects.filter(movie=self.get_object())
         context['related_movies'] = Movie.objects.filter(category=self.get_object().category)
         return context
 
 
 class MovieCategory(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         self.category = self.kwargs['category']
@@ -56,7 +57,7 @@ class MovieCategory(ListView):
 
 class MovieLanguage(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         self.language = self.kwargs['lang']
@@ -70,7 +71,7 @@ class MovieLanguage(ListView):
 
 class MovieSearch(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         query = self.request.GET.get('query')
@@ -89,6 +90,7 @@ class MovieYear(YearArchiveView):
     allow_future = True
 
 
+@login_required(login_url='/accounts/login')
 def add_comment(request, pk):
     movie = Movie.objects.get(id=pk)
     form = CommentForm()
@@ -98,4 +100,16 @@ def add_comment(request, pk):
 
     return render(request, 'add_comment.html', context)
 
-# @login_required(login_url='/accounts/login')
+
+@login_required(login_url='/accounts/login')
+def comment_create(request):
+    if request.method == "POST":
+        form = forms.CreateComment(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.commenter_name = request.user
+            instance.save()
+            return redirect('/')
+    else:
+        form = forms.CreateComment()
+    return render(request, "create_comment.html", {"form": form})

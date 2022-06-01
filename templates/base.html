@@ -74,20 +74,26 @@
 
 			<div class="toggle"><img src="img/menu.svg"></div>
 
-
+			{% if user.is_authenticated %}
 			<form action="{% url 'accounts:logout' %}" method="post">
 				{% csrf_token %}
-			<div style="float:right; padding-right: 20px; padding-top: 10px;">
+			<div style="float:right; padding-right: 20px; padding-top: 8px;">
 				<button class="button-85" role="button">Log Out</button></div></form>
+				<li><a style="float:right; color: white; padding-right: 20px; padding-top: 17px;">Welcome, {{user}}</a></li>
+				{% else %}
 
-			<form action="{% url 'accounts:login' %}">
-			<div style="float:right; padding-right: 50px; padding-top: 10px;">
+				<form action="{% url 'accounts:login' %}">
+			<div style="float:right; padding-right: 50px; padding-top: 8px;">
 
 			<button class="button-85" role="button">Sign In</button></div></form>
 
 			<form action="{% url 'accounts:signup' %}">
-			<div style="float:right; padding-right: 20px; padding-top: 10px;">
+			<div style="float:right; padding-right: 20px; padding-top: 8px;">
 				<button class="button-85" role="button">Sign Up</button></div></form>
+
+			{% endif %}
+
+
 
 
 
@@ -131,9 +137,9 @@
 			<div class="copyright"><p>Copyright &copy 2017 www.focusoncode.com</p></div>
 			<div class="footermenu">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="contact.html">Contact</a></li>
-					<li><a href="terms.html">Terms and conditions</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="https://www.linkedin.com/in/ellie-chodjayev/">Contact</a></li>
+					<li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Terms and conditions</a></li>
 				</ul>
 			</div>
 			<div class="tags">
