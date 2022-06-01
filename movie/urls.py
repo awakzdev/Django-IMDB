@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import MovieList, MovieDetail, MovieCategory, MovieLanguage, MovieSearch, MovieYear
+from .views import MovieList, MovieDetail, MovieCategory, MovieLanguage, MovieSearch, MovieYear, add_comment
+from . import views
 
 app_name = 'movie'
 
@@ -10,5 +11,6 @@ urlpatterns = [
     path('language/<str:lang>', MovieLanguage.as_view(), name='movie_language'),
     path('year/<int:year>', MovieYear.as_view(), name='movie_year'),
     path('<slug:slug>', MovieDetail.as_view(), name='movie_detail'),
+    path('<slug:slug>/add-comment/', views.add_comment, name='add-comment'),
 ]
 

@@ -67,8 +67,27 @@
 
 				<div id="respond">
 
+					{% if not movie.comments.all %}
 
-			  <form action="post_comment.php" method="post" id="commentform">
+						<p style="color: white">No Comments Added yet...</p>
+					<br>
+					<hr>
+
+					{% else %}
+						{% for comment in movie.comments.all %}
+					<div class="commenting" style="color: white;">
+							<h3><strong>{{ comment.commentor_name }}</strong></h3>
+							<p>{{ comment.comment_body }}</p>
+							<p><small>{{ comment.date_added }}</small></p>
+					</div>
+						{% endfor %}
+					{% endif %}
+
+
+					<br>
+					<hr>
+
+					<form action="add_comment.html" method="post">
 
 				<textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
 				  <a href="#" class="myButton">Submit</a>

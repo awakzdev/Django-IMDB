@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
@@ -26,7 +27,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to='movies')
-    banner = models.ImageField(upload_to='movies_banner')
+    banner = models.ImageField(upload_to='movies_banner', blank=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=10)
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=10)
     status = models.CharField(choices=STATUS_CHOICES, max_length=2)
@@ -36,6 +37,7 @@ class Movie(models.Model):
     movie_trailer = models.URLField()
     created = models.DateTimeField(blank=True, default=timezone.now)
     slug = models.SlugField(blank=True, null=True)
+    name = models.CharField(max_length=200, null=False, blank=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -59,3 +61,14 @@ class MovieLinks(models.Model):
 
     def __str__(self):
         return str(self.movie)
+
+
+class Comment(models.Model):
+    movie = models.ForeignKey(Movie, related_name="comments", on_delete=models.CASCADE)
+    commentor_name = models.CharField(max_length=200)
+    comment_body = models.TextField()
+    date_added = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.movie.name, self.commentor_name)
+

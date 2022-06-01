@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
-from .models import Movie, MovieLinks
+from .models import Movie, MovieLinks, Comment
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -87,5 +89,13 @@ class MovieYear(YearArchiveView):
     allow_future = True
 
 
+def add_comment(request, pk):
+    movie = Movie.objects.get(id=pk)
+    form = CommentForm()
+    context = {
+        'form': form
+    }
 
-# Saved for comments - @login_required(login_url='/accounts/login')
+    return render(request, 'add_comment.html', context)
+
+# @login_required(login_url='/accounts/login')
