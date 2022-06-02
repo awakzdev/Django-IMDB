@@ -4,9 +4,9 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
 from .models import Movie, MovieLink
 from .forms import CommentForm
+from django.db.models import F
 
 
-# Create your views here.
 class HomeView(ListView):
     model = Movie
     template_name = 'movie/home.html'
@@ -27,11 +27,10 @@ class MovieList(ListView):
 class MovieDetail(DetailView):
     model = Movie
 
-    def get_object(self):
-        object = super(MovieDetail, self).get_object()
-        object.views_count += 1
-        object.save()
-        return object
+    def render_to_response(self, *args, **kwargs):
+        self.object.views_count += 1
+        self.object.save()
+        return super().render_to_response(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(MovieDetail, self).get_context_data(**kwargs)
