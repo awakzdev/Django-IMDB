@@ -80,7 +80,8 @@
 				{% csrf_token %}
 			<div style="float:right; padding-right: 20px; padding-top: 8px;">
 				<button class="button-85" role="button">Log Out</button></div></form>
-				<li><a style="float:right; color: white; padding-right: 20px; padding-top: 17px;">Welcome, {{user}}</a></li>
+				<li><a style="float:right; color: powderblue; padding-right: 20px; padding-top: 17px;
+				text-shadow: 2px 2px 5px red; font-family: 'georgia';">Welcome, {{user}}</a></li>
 				{% else %}
 
 				<form action="{% url 'accounts:login' %}">
