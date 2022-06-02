@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
 from .models import Movie, MovieLink
 from .forms import CommentForm
-from django.db.models import F
+from django.db.models import F, Count, Value
 
 
 class HomeView(ListView):
@@ -28,6 +28,7 @@ class MovieDetail(DetailView):
     model = Movie
 
     def render_to_response(self, *args, **kwargs):
+        self.object.refresh_from_db()
         self.object.views_count += 1
         self.object.save()
         return super().render_to_response(*args, **kwargs)
