@@ -11,9 +11,3 @@ class CommentForm(forms.ModelForm):
             'commenter_name': forms.TextInput(attrs={'class': 'form-control'}),
             'comment_body': forms.Textarea(attrs={'class': 'form-control'}),
         }
-
-
-class CreateComment(forms.ModelForm):
-    class Meta:
-        model = models.Movie
-        fields = ['title', 'status', 'slug']
