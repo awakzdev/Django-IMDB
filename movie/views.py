@@ -40,6 +40,20 @@ class MovieDetail(DetailView):
         return context
 
 
+class MovieStatus(ListView):
+    model = Movie
+    paginate_by = 5
+
+    def get_queryset(self):
+        self.status = self.kwargs['status']
+        return Movie.objects.filter(status=self.status)
+
+    def get_context_data(self, **kwargs):
+        context = super(MovieStatus, self).get_context_data(**kwargs)
+        context['movie_status'] = self.status
+        return context
+
+
 class MovieCategory(ListView):
     model = Movie
     paginate_by = 5
