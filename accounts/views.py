@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 
 
 def signup_view(request):
@@ -8,6 +8,10 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            new_user = authenticate(
+                username = form.cleaned_data['username'],
+                password = form.cleaned_data['password1'])
+            login(request, new_user)
             return redirect("/")
     else:
         form = UserCreationForm()
