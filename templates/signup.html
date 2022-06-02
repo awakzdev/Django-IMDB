@@ -8,7 +8,12 @@
   <h1>Sign Up</h1>
     <form method="post">
         {% csrf_token %}
-        {{form.as_p}}
+        <div>Username:</div>
+        {{form.username}}
+        <div>Password:</div>
+        {{form.password1}}
+        <div>Password:</div>
+        {{form.password2}}
       {% if request.GET.next %}
       <input type="hidden" name="next" value="{{ request.GET.next }}">
     {% endif %}
