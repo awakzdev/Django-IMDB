@@ -88,7 +88,7 @@
 					<form action="add_comment.html" method="post">
 
 				<textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
-				  <a href="#" class="myButton">Submit</a>
+				  <a href="{% url 'movies:add_comment' movie.slug %}" class="myButton">Submit</a>
 
 			  </form>
 			</div>
