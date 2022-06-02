@@ -90,8 +90,8 @@ class MovieYear(YearArchiveView):
 
 
 @login_required(login_url='/accounts/login')
-def add_comment(request, pk):
-    movie = Movie.objects.get(id=pk)
+def add_comment(request, slug):
+    movie = Movie.objects.get(slug=slug)
     form = CommentForm()
     context = {
         'form': form
