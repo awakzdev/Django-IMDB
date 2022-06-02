@@ -1,28 +1,17 @@
-
 {% load static %}
 
-<html>
-<head>
-<style>
-
-h1 {color: white; text-align: center; padding-top: 250px; padding-right:30px}
-
-</style>
-</head>
-<body>
-
-<h1>Signup Page</h1>
-
+<!-- Icon -->
+<link rel="icon" href="{% static 'img/fibo.png' %}" type="image/icon type">
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
-<div class="login">
 
 <div class="login">
-   <form method="post">
-
-  {% csrf_token %}
-  {{form.as_p}}
-
-   <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-</form>
-  </div>
-
+  <h1>Sign Up</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+      {% if request.GET.next %}
+      <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</div>
