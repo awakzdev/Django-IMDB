@@ -1,44 +1,18 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-
-<html>
-<head>
-<style>
-
-h1 {color: white; text-align: center; padding: 250px 0; padding-right:30px}
-p {text-align: center;}
-div {text-align: center; }
-input {text-align
-div { height: 50px; border: 1px solid blue;}
-
-</style>
-</head>
-<body>
-<h1>Login Page</h1>
+<!-- Icon -->
+<link rel="icon" href="{% static 'img/fibo.png' %}" type="image/icon type">
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
-
 <div class="login">
-
-  <form method="post">
-
-  {% csrf_token %}
-  {{form.as_p}}
-    {% if request.GET.next %}
+  <h1>Login Page</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+      {% if request.GET.next %}
       <input type="hidden" name="next" value="{{ request.GET.next }}">
     {% endif %}
-
-  <div>
-  <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-    </div>
-
-
-</form>
- </form>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
 </div>
-
-</body>
-</html>
-
-
