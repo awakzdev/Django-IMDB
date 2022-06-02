@@ -93,8 +93,5 @@ class MovieYear(YearArchiveView):
 def add_comment(request, slug):
     movie = Movie.objects.get(slug=slug)
     form = CommentForm()
-    context = {
-        'form': form
-    }
-
+    context = {'form': form}
     return render(request, 'add_comment.html', context)
