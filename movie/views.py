@@ -2,8 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
-from .models import Movie, MovieLink, Comment
-from . import forms
+from .models import Movie, MovieLink
 from .forms import CommentForm
 
 
@@ -99,17 +98,3 @@ def add_comment(request, pk):
     }
 
     return render(request, 'add_comment.html', context)
-
-
-@login_required(login_url='/accounts/login')
-def comment_create(request):
-    if request.method == "POST":
-        form = forms.CreateComment(request.POST, request.FILES)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.commenter_name = request.user
-            instance.save()
-            return redirect('/')
-    else:
-        form = forms.CreateComment()
-    return render(request, "create_comment.html", {"form": form})
