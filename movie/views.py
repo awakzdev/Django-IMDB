@@ -104,7 +104,6 @@ class MovieYear(YearArchiveView):
     paginate_by = 5
 
 
-
 @login_required(login_url='/accounts/login')
 def add_comment(request, slug):
     movie = Movie.objects.get(slug=slug)

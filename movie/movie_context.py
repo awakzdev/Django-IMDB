@@ -2,6 +2,6 @@ from .models import Movie
 
 
 def slider_movies(request):
-    movies = Movie.objects.last()
+    movie = Movie.objects.last()
 
-    return {'slider_movie': movies}
+    return {'slider_movie': movie}
