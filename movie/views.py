@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
 from .models import Movie, MovieLink
 from .forms import CommentForm
-from django.db.models import F, Count, Value
+from . import forms
 
 
 class HomeView(ListView):
@@ -104,9 +104,17 @@ class MovieYear(YearArchiveView):
     paginate_by = 5
 
 
-@login_required(login_url='/accounts/login')
-def add_comment(request, slug):
+@login_required(login_url='/accounts/login/')
+def comment_create(request, slug):
     movie = Movie.objects.get(slug=slug)
-    form = CommentForm()
-    context = {'form': form}
-    return render(request, 'add_comment.html', context)
+    if request.method == 'POST':
+        form = forms.CommentForm(request.POST, request.FILES)
+        if form.is_valid:
+            comment = form.save(commit=False)
+            comment.post = movie
+            comment.author = request.user
+            form.save()
+            return redirect('movies:movie_detail', slug=slug)
+    else:
+        form = forms.CommentForm()
+    return render(request, 'movie/add_comment.html', {'form': form})

@@ -63,11 +63,14 @@ class MovieLink(models.Model):
 
 
 class Comment(models.Model):
-    movie = models.ForeignKey(Movie, related_name="comments", on_delete=models.CASCADE)
-    commenter_name = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
-    comment_body = models.TextField()
-    date_added = models.DateTimeField(auto_now=True)
+    post = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='comments')
+    name = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created_on']
 
     def __str__(self):
-        return '%s - %s' % (self.movie.title, self.commenter_name)
+        return 'Comment {} by {}'.format(self.body, self.name)
 

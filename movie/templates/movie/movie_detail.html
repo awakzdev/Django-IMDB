@@ -75,9 +75,9 @@
 					{% else %}
 						{% for comment in movie.comments.all %}
 					<section class="reply" style="padding: 10px; color: white;">
-							<h3><strong>{{ comment.commenter_name }}</strong></h3>
-							<p>{{ comment.comment_body }}</p>
-							<p><small>{{ comment.date_added }}</small></p>
+							<h3><strong>{{ comment.name }}</strong></h3>
+							<p>{{ comment.body | linebreaks }}</p>
+							<p><small>{{ comment.created_on }}</small></p>
 					</section>
 						{% endfor %}
 					{% endif %}
@@ -85,9 +85,16 @@
 					<br>
 					<hr>
 
-					<form action="add_comment.html" method="post">
+					<form method="post" style="margin-top: 1.3em;">
+						{{ form.as_p }}
+						{% csrf_token %}
 
 				<textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
+
+						 {% if request.GET.next %}
+				  <input type="hidden" name="next" value="{{ request.GET.next }}">
+						{% endif %}
+
 				  <a href="{% url 'movies:add_comment' movie.slug %}" class="myButton">Submit</a>
 
 			  </form>
