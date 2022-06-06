@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
-from .models import Movie, MovieLink
+from .models import Movie, MovieLink, Comment
+from .forms import CommentForm
 from . import forms
 
 
@@ -37,6 +38,33 @@ class MovieDetail(DetailView):
         context['links'] = MovieLink.objects.filter(movie=self.get_object())
         context['related_movies'] = Movie.objects.filter(category=self.get_object().category)
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        self.object = self.get_object()
+        context = super().get_context_data(**kwargs)
+
+        post = Movie.objects.filter(slug=self.kwargs['slug'])[0]
+        comments = post.comment_set.all()
+
+        context['post'] = post
+        context['comments'] = comments
+        context['form'] = form
+
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            content = form.cleaned_data['content']
+
+            comment = Comment.objects.create(
+                name=name, email=email, content=content, post=post
+            )
+
+            form = CommentForm()
+            context['form'] = form
+            return self.render_to_response(context=context)
+
+        return self.render_to_response(context=context)
 
 
 class MovieStatus(ListView):
