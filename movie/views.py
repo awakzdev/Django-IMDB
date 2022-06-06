@@ -1,9 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
 from .models import Movie, MovieLink
-from .forms import CommentForm
 from . import forms
 
 
@@ -106,7 +105,7 @@ class MovieYear(YearArchiveView):
 
 @login_required(login_url='/accounts/login/')
 def comment_create(request, slug):
-    movie = Movie.objects.get(slug=slug)
+    movie = get_object_or_404(Movie, slug=slug)
     if request.method == 'POST':
         form = forms.CommentForm(request.POST, request.FILES)
         if form.is_valid:
