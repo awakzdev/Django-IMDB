@@ -60,14 +60,19 @@
 					<h3 style="padding-top: 10px;">Comments ({{post_comments_count}})</h3>
 				</section>
 
+
 				 <!--comments-->
 				 <div class="section ">
 					<div class="container ">
 						<h2></h2>
 						<div class="row ">
 							<div class="col-lg-8 mx-auto ">
-								<!--display coment-->
-	
+
+								<!--display comment-->
+								{% if not post_comments %}
+								<p style="color: white; font-size:30px;">No Comments Added yet.</p>
+								<br>
+								{% else %}
 								<div class="media-list">
 									{% for comment in post_comments %}
 									<div>
@@ -80,15 +85,14 @@
 										</div>
 									</div>
 									{% endfor %}
+									{% endif %}
 								</div>
-	
-								
+
 								<!--display the form-->
 								<form method="POST" action="{% url 'movies:movie_detail' slug=movie.slug %}">
 									{% csrf_token %}
 									<div style="width: 317px;" class="form-group">
 										<hr>
-
 										{{form.content }}
 										<br>
 									</div>
