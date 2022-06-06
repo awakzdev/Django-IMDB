@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.dates import YearArchiveView
-from .models import Movie, MovieLink
+from .models import Movie, MovieLink, Comment
+from .forms import CommentForm
 from . import forms
 
 
@@ -25,6 +26,7 @@ class MovieList(ListView):
 
 class MovieDetail(DetailView):
     model = Movie
+    form = CommentForm
 
     def render_to_response(self, *args, **kwargs):
         self.object.refresh_from_db()
@@ -32,10 +34,28 @@ class MovieDetail(DetailView):
         self.object.save()
         return super().render_to_response(*args, **kwargs)
 
+    def post(self, request, slug, *args, **kwargs):
+        movie = get_object_or_404(Movie, slug=slug)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            post = self.get_object()
+            form.instance.user = request.user
+            form.instance.post = post
+            form.save()
+
+            return redirect('movies:movie_detail', slug=slug)
+
     def get_context_data(self, **kwargs):
         context = super(MovieDetail, self).get_context_data(**kwargs)
         context['links'] = MovieLink.objects.filter(movie=self.get_object())
         context['related_movies'] = Movie.objects.filter(category=self.get_object().category)
+        post_comments_count = Comment.objects.all().filter(post=self.object.id).count()
+        post_comments = Comment.objects.all().filter(post=self.object.id)
+        context.update({
+            'form': self.form,
+            'post_comments': post_comments,
+            'post_comments_count': post_comments_count,
+        })
         return context
 
 

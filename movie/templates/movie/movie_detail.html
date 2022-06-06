@@ -57,45 +57,47 @@
 				</section>
 
 				<section class="comments">
-					<h3>Comments</h3>
+					<h3 style="padding-top: 10px;">Comments ({{post_comments_count}})</h3>
 				</section>
 
-				<div id="respond">
+				 <!--comments-->
+				 <div class="section ">
+					<div class="container ">
+						<h2></h2>
+						<div class="row ">
+							<div class="col-lg-8 mx-auto ">
+								<!--display coment-->
+	
+								<div class="media-list">
+									{% for comment in post_comments %}
+									<div>
+										<div class="media-body">
+											<div class="small-1" style="padding: 10px; color: rgb(85, 180, 197);">
+												<b> {{comment.user}}</b>
+												<time class="ml-4 opaciy-70 small-3"> {{comment.date}}</time>
+											</div>
+											<p style="padding: 10px; color: rgb(128, 83, 0);">{{comment.content}}</p>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+	
+								
+								<!--display the form-->
+								<form method="POST" action="{% url 'movies:movie_detail' slug=movie.slug %}">
+									{% csrf_token %}
+									<div style="width: 317px;" class="form-group">
+										<hr>
 
-					{% if not movie.comments.all %}
-
-					<p style="color: white">No Comments Added yet.</p>
-
-					{% else %}
-						{% for comment in movie.comments.all %}
-					<section class="reply" style="padding: 10px; color: white;">
-							<h3><strong>{{ comment.name }}</strong></h3>
-							<p>{{ comment.body | linebreaks }}</p>
-							<p><small>{{ comment.created_on }}</small></p>
-					</section>
-						{% endfor %}
-					{% endif %}
-
-					<form method="post" style="margin-top: 1.3em;">
-						{{ form.as_p }}
-						{% csrf_token %}
-
-					<body>
-					  <textarea placeholder="Comment..." style="  width:100%;
-					  resize: vertical;
-					  padding:15px;
-					  border-radius:15px;
-					  border:0;
-					  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-					  height:150px;
-  					  background-color: #fafafa;
-  					  box-sizing:border-box;"></textarea>
-					</body>
-
-				  <a href="{% url 'movies:add_comment' movie.slug %}" class="myButton">Submit</a>
-				  </form>
-			</div>
-		</div>
+										{{form.content }}
+										<br>
+									</div> 
+									<button class="myButton" style="margin-top: 10px;" type="submit">Comment</button>   
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 	</main>
 
 {% endblock body %}
