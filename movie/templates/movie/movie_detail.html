@@ -91,10 +91,6 @@
 
 				<textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
 
-						 {% if request.GET.next %}
-				  <input type="hidden" name="next" value="{{ request.GET.next }}">
-						{% endif %}
-
 				  <a href="{% url 'movies:add_comment' movie.slug %}" class="myButton">Submit</a>
 
 			  </form>
