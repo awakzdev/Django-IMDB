@@ -32,10 +32,6 @@
 						{% for link in links  %}
 						{% if link.type == 'D' %}
 						<li><a href="{{link.link}}">Download</a></li>
-						{% else %}
-						{% if link in links is None %}
-						<li><a>No Download Link Added</a></li>
-						{% endif %}
 						{% endif %}
 						{% endfor %}
 					</ul>
@@ -44,10 +40,6 @@
 						{% for link in links  %}
 						{% if link.type == 'W' %}
 						<li><a href="{{link.link}}">Watch</a></li>
-						{% else %}
-						{% if link in links is None %}
-						<li><a>No Watch Link Added</a></li>
-						{% endif %}
 						{% endif %}
 						{% endfor %}
 					</ul>
