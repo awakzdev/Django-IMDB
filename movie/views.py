@@ -107,7 +107,7 @@ class MovieYear(YearArchiveView):
 def comment_create(request, slug):
     movie = get_object_or_404(Movie, slug=slug)
     if request.method == 'POST':
-        form = forms.CommentForm(request.POST, request.FILES)
+        form = forms.CommentForm(request.POST)
         if form.is_valid:
             comment = form.save(commit=False)
             comment.post = movie
