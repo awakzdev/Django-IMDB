@@ -73,7 +73,7 @@
 									<div>
 										<div class="media-body">
 											<div class="small-1" style="padding: 10px; color: rgb(85, 180, 197);">
-												<b> {{comment.user}}</b>
+												<b> <span style='font-size:30px;'>&#x1F600;</span> {{comment.user}} </b>
 												<time class="ml-4 opaciy-70 small-3"> {{comment.date}}</time>
 											</div>
 											<p style="padding: 10px; color: rgb(128, 83, 0);">{{comment.content}}</p>
@@ -91,8 +91,12 @@
 
 										{{form.content }}
 										<br>
-									</div> 
-									<button class="myButton" style="margin-top: 10px;" type="submit">Comment</button>   
+									</div>
+									{% if request.user.is_authenticated %}
+									<button class="myButton" style="margin-top: 10px;" type="submit">Comment</button>
+									{% else %}
+									<a href="{% url 'accounts:signup' %}" style="margin-top: 10px;" class="myButton">Submit</a>
+									{% endif %}
 								</form>
 							</div>
 						</div>
