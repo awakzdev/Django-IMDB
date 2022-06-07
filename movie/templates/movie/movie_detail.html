@@ -58,7 +58,7 @@
 
 				<section class="comments">
 					<h3 style="padding-top: 10px;">Comments ({{post_comments_count}})</h3>
-				</section>
+
 
 
 				 <!--comments-->
@@ -70,7 +70,8 @@
 
 								<!--display comment-->
 								{% if not post_comments %}
-								<p style="color: white; font-size:30px;">No Comments Added yet.</p>
+								<br>
+								<p style="color: rgb(128, 101, 44); font-size:20px; padding-left: 5px;">No Comments Added yet.</p>
 								<br>
 								{% else %}
 								<div class="media-list">
@@ -87,12 +88,12 @@
 									{% endfor %}
 									{% endif %}
 								</div>
+							</section>
 
 								<!--display the form-->
 								<form method="POST" action="{% url 'movies:movie_detail' slug=movie.slug %}">
 									{% csrf_token %}
-									<div style="width: 317px;" class="form-group">
-										<hr>
+									<div class="form-group">
 										{{form.content }}
 										<br>
 									</div>
