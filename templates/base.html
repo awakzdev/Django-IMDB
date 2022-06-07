@@ -27,8 +27,6 @@
 				<nav class="menu">
 					<ul>
 
-
-
 					<li><a href="/">Home</a></li>
 					<li><a>Genres</a>
 						<ul>
@@ -54,7 +52,6 @@
 							<li><a href="{% url 'movies:movie_language' 'german' %}">German</a></li>
 						</ul>
 					</li>
-
 
 
 					<li class="mobsearch">
@@ -96,21 +93,12 @@
 			{% endif %}
 
 
-
-
-
-
-
 		</header>
 		<!-- Swiper -->
 		<div class="homeslider">
 			<div class="swiper-container">
 
 				<div class="swiper-wrapper">
-					
-
-
-
 						<div class="swiper-slide">
 							{% if slider_movie.banner %}
 								<img src="{{slider_movie.banner.url}}">
@@ -137,7 +125,7 @@
 		{% endblock body %}
 
 		<footer class="footer">
-			<div class="copyright"><p>Copyright &copy 2017 www.focusoncode.com</p></div>
+			<div class="copyright"><p>Copyright &copy 2022 ellie</p></div>
 			<div class="footermenu">
 				<ul>
 					<li><a href="/">Home</a></li>
