@@ -71,7 +71,7 @@
 								<!--display comment-->
 								{% if not post_comments %}
 								<br>
-								<p style="color: rgb(202, 224, 226); font-size:20px; padding-left: 5px;">No Comments Added yet.</p>
+								<p style="color: rgb(204, 158, 98); font-size:15px; padding-left: 5px;">No Comments Added yet.</p>
 								<br>
 								{% else %}
 								<div class="media-list">
@@ -79,10 +79,10 @@
 									<div>
 										<div class="media-body">
 											<div class="small-1" style="padding: 10px; color: rgb(85, 180, 197);">
-												<b> <span style='font-size:30px;'>&#x1F600;</span> {{comment.user}} </b>
+												<b>{{comment.user}}</b>
 												<time class="ml-4 opaciy-70 small-3"> {{comment.date}}</time>
 											</div>
-											<p style="padding: 10px; color: rgb(128, 83, 0);">{{comment.content}}</p>
+											<p style="padding: 10px; color: rgb(209, 149, 71);">{{comment.content}}</p>
 										</div>
 									</div>
 									{% endfor %}
