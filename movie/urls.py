@@ -12,6 +12,5 @@ urlpatterns = [
     path('language/<str:lang>', MovieLanguage.as_view(), name='movie_language'),
     path('year/<int:year>', MovieYear.as_view(), name='movie_year'),
     path('<slug:slug>', MovieDetail.as_view(), name='movie_detail'),
-    path('<slug:slug>/add-comment/', views.comment_create, name='add_comment'),
 ]
 

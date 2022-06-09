@@ -34,7 +34,7 @@ class MovieDetail(DetailView):
         self.object.save()
         return super().render_to_response(*args, **kwargs)
 
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, slug):
         movie = get_object_or_404(Movie, slug=slug)
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -42,8 +42,10 @@ class MovieDetail(DetailView):
             form.instance.user = request.user
             form.instance.post = post
             form.save()
-
-            return redirect('movies:movie_detail', slug=slug)
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('movies:movie_detail', slug=slug)
 
     def get_context_data(self, **kwargs):
         context = super(MovieDetail, self).get_context_data(**kwargs)
