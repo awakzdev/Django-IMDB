@@ -100,7 +100,7 @@
 									{% if request.user.is_authenticated %}
 									<button class="myButton" style="margin-top: 10px;" type="submit">Comment</button>
 									{% else %}
-									<a href="{% url 'accounts:signup' %}" style="margin-top: 10px;" class="myButton">Submit</a>
+									<a href="{% url 'accounts:login' %}" style="margin-top: 10px;" class="myButton">Submit</a>
 									{% endif %}
 								</form>
 							</div>
