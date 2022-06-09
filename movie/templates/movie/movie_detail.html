@@ -91,16 +91,19 @@
 							</section>
 
 								<!--display the form-->
+								{% if request.user.is_authenticated %}
 								<form method="POST" action="{% url 'movies:movie_detail' slug=movie.slug %}">
 									{% csrf_token %}
 									<div class="form-group">
 										{{form.content }}
 										<br>
 									</div>
-									{% if request.user.is_authenticated %}
+
 									<button class="myButton" style="margin-top: 10px;" type="submit">Comment</button>
 									{% else %}
-									<a href="{% url 'accounts:login' %}" style="margin-top: 10px;" class="myButton">Submit</a>
+									<h3 style="color: white;">You'll have to login to comment.</h3>
+									<a href="{% url 'accounts:login' %}?next={{request.path}}" style="margin-top: 10px;" class="myButton">Login</a>
+									<a href="{% url 'accounts:signup' %}?next={{request.path}}" style="margin-top: 10px;" class="myButton">Signup</a>
 									{% endif %}
 								</form>
 							</div>

@@ -13,7 +13,10 @@ def signup_view(request):
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'])
             login(request, new_user)
-            return redirect("/")
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('/')
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {"form": form})
