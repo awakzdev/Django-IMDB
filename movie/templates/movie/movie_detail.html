@@ -101,7 +101,7 @@
 
 									<button class="myButton" style="margin-top: 10px;" type="submit">Comment</button>
 									{% else %}
-									<h3 style="color: white;">You'll have to login to comment.</h3>
+									<h3 style="color: white;">You'll need an Account to comment.</h3>
 									<a href="{% url 'accounts:login' %}?next={{request.path}}" style="margin-top: 10px;" class="myButton">Login</a>
 									<a href="{% url 'accounts:signup' %}?next={{request.path}}" style="margin-top: 10px;" class="myButton">Signup</a>
 									{% endif %}
